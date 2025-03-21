@@ -29,12 +29,12 @@ const Products = () => {
     <Container>
       <Row>
         {productsArr.map((item, index) => (
-          <Col key={index} md={3} className="mb-4"> {/* Use Bootstrap grid system for layout */}
+          <Col key={index} md={3} className="mb-`4"> 
             <Card style={{ width: '18rem' }}>
               <Card.Img variant="top" src={item.imageUrl} />
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
-                <Card.Text>Price: ${item.price}</Card.Text> {/* Use Card.Text for price */}
+                <Card.Text>Price: ${item.price}</Card.Text> 
                 <Button variant="primary">Add to Cart</Button>
               </Card.Body>
             </Card>
