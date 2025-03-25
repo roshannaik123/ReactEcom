@@ -1,10 +1,36 @@
-import React from 'react'
-import Header from './Components/Home/Header'
+import React ,{useState}from 'react'
+import Header from './Components/Header'
+import MovieList from './Components/MovieList'
 
 const App = () => {
+  const[movies,setMovies]=useState([]);
+  function fetchMoviesHandler(){
+  fetch('https://swapi.dev/api/films/').then(response=>{
+ return response.json();
+  })
+  .then((data)=>{
+    const transformedMovies=data.results.map(movieData=>{
+
+      return {
+        id:movieData.episode_id,
+        title:movieData.title,
+        openingText:movieData.opening_crawl,
+     releaseData: movieData.release_date
+      }
+    });
+    console.log(transformedMovies);
+   setMovies(transformedMovies);
+  });
+  }
   return (
     <div>
-      <Header/>
+    <Header/>
+    <section>
+      <button onClick={fetchMoviesHandler}>Fetch Movies</button>
+      </section> 
+      <section>
+        <MovieList movies={movies}/>
+      </section>
     </div>
   )
 }
